@@ -3,9 +3,11 @@
   connection: local
   vars:
     the_internet: "0.0.0.0/0"
+    AWS_SECRET_ACCESS_KEY: '{{ AWS_SECRET_ACCESS_KEY }}'
+    AWS_ACCESS_KEY_ID: '{{ AWS_ACCESS_KEY_ID }}'
+    MY_HOUSE: "108.31.39.50/32"
+    VPC: "vpc-096c9acf801eb747b"
 
-  vars_files:
-    - keys.yml
   tasks:
   - name: Create Security Groups
     amazon.aws.ec2_security_group:
