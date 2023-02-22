@@ -11,7 +11,7 @@
     amazon.aws.ec2_security_group:
       name: demo
       description: Security Demo Group
-      vpc_id: '{{ lookup ('env', 'VPC') }}'
+      vpc_id: "{{ lookup ('env', 'VPC') }}"
       region: us-east-1
       aws_access_key: '{{ var_aws_access_key}}'
       aws_secret_key: '{{ var_aws_secret_key }}'
