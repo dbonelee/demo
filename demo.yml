@@ -3,7 +3,9 @@
   connection: local
   vars:
     the_internet: "0.0.0.0/0"
+    my_name: "{{ lookup ('env', 'AWS_SECRET_ACCESS_KEY') }}"
+
   tasks:
   - name: Echo the variables
     ansible.builtin.debug:
-      msg: This is my {{ AWS_ACCESS_KEY_ID }}
+      msg: This is my {{ my_name }}
