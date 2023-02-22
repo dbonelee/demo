@@ -43,7 +43,7 @@
       security_group: demo
       network:
         assign_public_ip: true
-      vpc_subnet_id: '{{ subnet-id }}'
+      vpc_subnet_id: '{{ var_subnet_id }}'
       wait: "yes"
       state: running
       count: 1
