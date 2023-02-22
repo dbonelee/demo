@@ -25,7 +25,7 @@
       - proto: tcp
         from_port: 22
         to_port: 22
-        cidr_ip: '{{ MY_HOUSE }}'
+        cidr_ip: '{{ lookup ('env', 'MY_HOUSE') }}'
       - proto: tcp
         from_port: 443
         to_port: 443
