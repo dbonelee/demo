@@ -1,0 +1,70 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    the_internet: "0.0.0.0/0"
+
+  vars_files:
+    - keys.yml
+  tasks:
+  - name: Create Security Groups
+    amazon.aws.ec2_security_group:
+      name: demo
+      description: Security Demo Group
+      vpc_id: '{{ VPC }}'
+      region: us-east-1
+      aws_access_key: '{{ AWS_ACCESS_KEY_ID }}'
+      aws_secret_key: '{{ AWS_SECRET_ACCESS_KEY }}'
+      rules:
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: '{{ the_internet }}'
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: '{{ MY_HOUSE }}'
+      - proto: tcp
+        from_port: 443
+        to_port: 443
+        cidr_ip: '{{ the_internet }}'
+
+  - name: Create Web Server
+    amazon.aws.ec2_instance:
+      aws_access_key: '{{ AWS_ACCESS_KEY_ID }}'
+      aws_secret_key: '{{ AWS_SECRET_ACCESS_KEY }}'
+      key_name: ansible
+      region: us-east-1
+      instance_type: t2.micro
+      image_id: ami-0557a15b87f6559cf
+      security_group: demo
+      network:
+        assign_public_ip: true
+      vpc_subnet_id: subnet-07dda32e10a93c6db
+      wait: "yes"
+      state: running
+      count: 1
+      tags:
+        Name: "webserver"
+    register: var_web
+
+  - name: Create Database Server
+    amazon.aws.ec2_instance:
+       aws_access_key: '{{ AWS_ACCESS_KEY_ID }}'
+       aws_secret_key: '{{ AWS_SECRET_ACCESS_KEY }}'
+       key_name: ansible
+       region: us-east-1
+       instance_type: t2.micro
+       image_id: ami-0557a15b87f6559cf
+       security_group: demo
+       state: started
+       network:
+        assign_public_ip: true
+       vpc_subnet_id: subnet-07dda32e10a93c6db
+       wait: "yes"
+       count: 1
+       tags:
+         Name: "database"
+    register: var_database
+
+ 
