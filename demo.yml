@@ -3,7 +3,6 @@
   connection: local
   vars:
     the_internet: "0.0.0.0/0"
-    AWS_SECRET_ACCESS_KEY: '{{ AWS_SECRET_ACCESS_KEY }}'
     MY_HOUSE: "108.31.39.50/32"
     VPC: "vpc-096c9acf801eb747b"
 
