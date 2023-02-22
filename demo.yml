@@ -3,9 +3,9 @@
   connection: local
   vars:
     the_internet: "0.0.0.0/0"
-    MY_HOUSE: "108.31.39.50/32"
-    VPC: "vpc-096c9acf801eb747b"
 
+  vars_files:
+    - keys.yml
   tasks:
   - name: Create Security Groups
     amazon.aws.ec2_security_group:
@@ -67,4 +67,10 @@
          Name: "database"
     register: var_database
 
- 
+  - name: display instances
+    debug:
+      var: var_database.instances
+
+  - name: display web instance
+    debug:
+      var: var_web.instances[0].public_dns_name
