@@ -51,4 +51,13 @@
         Name: "webserver"
     register: var_web
 
+  - name: display instances
+    debug:
+      var: var_database.instances
 
+  - name: display web instance
+    debug:
+      var: var_web.instances[0].public_dns_name
+    
+  - name: Adding webserver {{ var_web.instances[0].public_dns_name }} to inventory
+    shell: "sed -i '/web/a {{ var_web.instances[0].public_dns_name }}' hosts"
