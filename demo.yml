@@ -7,7 +7,7 @@
     var_aws_secret_key: "{{ lookup ('env', 'AWS_SECRET_ACCESS_KEY') }}"
     var_VPC: "{{ lookup ('env', 'VPC') }}"
     MY_HOUSE: "{{ lookup ('env', 'MY_HOUSE') }}"
-    var_subnet_id: "{{ subnet-id }}"
+    var_subnet_id: "subnet-07dda32e10a93c6db"
 
   tasks:
   - name: Create Security Groups
