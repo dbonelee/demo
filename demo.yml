@@ -5,15 +5,15 @@
     the_internet: "0.0.0.0/0"
     var_aws_access_key: "{{ lookup ('env', 'AWS_ACCESS_KEY_ID') }}"
     var_aws_secret_key: "{{ lookup ('env', 'AWS_SECRET_ACCESS_KEY') }}"
-    vpc: "{{ VPC }}"
-    MY_HOUSE: "{{ MY_HOUSE }}"
+    var_VPC: "{{ lookup ('env', 'VPC') }}"
+    MY_HOUSE: "{{ lookup ('env', 'MY_HOUSE') }}"
 
   tasks:
   - name: Create Security Groups
     amazon.aws.ec2_security_group:
       name: demo
       description: Security Demo Group
-      vpc_id: "{{ lookup ('env', 'VPC') }}"
+      vpc_id: '{{ var_VPC }}'
       region: us-east-1
       aws_access_key: '{{ var_aws_access_key}}'
       aws_secret_key: '{{ var_aws_secret_key }}'
@@ -25,7 +25,7 @@
       - proto: tcp
         from_port: 22
         to_port: 22
-        cidr_ip: '{{ lookup ('env', 'MY_HOUSE') }}'
+        cidr_ip: '{{ MY_HOUSE }}'
       - proto: tcp
         from_port: 443
         to_port: 443
@@ -50,10 +50,4 @@
         Name: "webserver"
     register: var_web
 
-  - name: display web instance
-    debug:
-      var: var_web.instances[0].public_dns_name
-
-  - name: Adding webserver {{ var_web.instances[0].public_dns_name }} to inventory
-    shell: "sed -i '/web/a {{ var_web.instances[0].public_dns_name }}' hosts"
 
