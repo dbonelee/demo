@@ -69,7 +69,7 @@
 
 
   - name: Modify permissions for key
-    file:
+    ansible.builtin.file:
       path: "./ansible.pem}"
       state: directory
       owner: root
