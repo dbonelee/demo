@@ -62,6 +62,10 @@
   - name: Adding webserver {{ var_web.instances[0].public_dns_name }} to inventory
     shell: "sed -i '/web/a {{ var_web.instances[0].public_dns_name }}' hosts"
 
+  - name: Pause for 0 minutes
+    ansible.builtin.pause:
+      minutes: .5
+
 - name: Ansible Playbook to Install and Setup Apache on Ubuntu
   hosts: web
   become: yes
