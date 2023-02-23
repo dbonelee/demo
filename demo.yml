@@ -12,8 +12,6 @@
   tasks:
 
   - name: Modify permissions for key
-    become: yes
-    become_method: sudo
     file:
       path: ./ansible.pem
       owner: root
