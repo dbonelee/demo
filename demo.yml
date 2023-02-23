@@ -34,7 +34,7 @@
       - proto: tcp
         from_port: 22
         to_port: 22
-        cidr_ip: '54.161.104.5'
+        cidr_ip: '54.161.104.5/32'
       
 
   - name: Create Web Server
