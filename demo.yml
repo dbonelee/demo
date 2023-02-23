@@ -64,7 +64,7 @@
 
   - name: Pause for 0 minutes
     ansible.builtin.pause:
-      minutes: 30
+      minutes: 1
 
 - name: Ansible Playbook to Install and Setup Apache on Ubuntu
   hosts: web
