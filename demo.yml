@@ -58,7 +58,7 @@
 
   - name: display instances
     debug:
-      var: var_database.instances
+      var: var_web.instances
 
   - name: display web instance
     debug:
@@ -69,5 +69,5 @@
 
   - name: Pause for 0 minutes
     ansible.builtin.pause:
-      minutes: 0
+      minutes: 5
 
