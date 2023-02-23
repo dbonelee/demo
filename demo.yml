@@ -71,7 +71,7 @@
 
   - name: Change key file permissions
     ansible.builtin.file:
-      path: /var/lib/jenkins/workspace/deploy_web/ansible.pem
+      path: ./ansible.pem
       owner: jenkins
       group: jenkins
       mode: '0400'
