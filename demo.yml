@@ -65,7 +65,7 @@
       var: var_web.instances[0].public_dns_name
     
   - name: Adding webserver {{ var_web.instances[0].public_dns_name }} to inventory
-    shell: "sed -i '/web/a {{ var_web.instances[0].public_dns_name }}' hosts"
+    shell: "sed -i '/web/a {{ var_web.instances[0].private_ip_address }}' hosts"
 
   - name: Pause for 0 minutes
     ansible.builtin.pause:
