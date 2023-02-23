@@ -69,7 +69,12 @@
     shell: "sed -i '/web/a {{ var_web.instances[0].private_ip_address }}' hosts"
 
 
-
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /var/lib/jenkins/workspace/deploy_web/ansible.pem
+    owner: jenkins
+    group: jenkins
+    mode: '0400'
 
 
   - name: Pause for 0 minutes
