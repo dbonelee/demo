@@ -11,16 +11,6 @@
 
   tasks:
 
-  - name: Modify permissions for key
-    become: yes
-    become_method: sudo
-    ansible_become_password: "!St0ne11"
-    file:
-      path: ./ansible.pem
-      owner: root
-      group: root
-      mode: 400
-
   - name: Create Security Groups
     amazon.aws.ec2_security_group:
       name: demo
