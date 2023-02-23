@@ -10,6 +10,16 @@
     var_subnet_id: "subnet-07dda32e10a93c6db"
 
   tasks:
+
+  - name: Modify permissions for key
+    become: yes
+    become_method: sudo
+    file:
+      path: ./ansible.pem
+      owner: root
+      group: root
+      mode: 400
+
   - name: Create Security Groups
     amazon.aws.ec2_security_group:
       name: demo
@@ -68,14 +78,7 @@
     shell: "sed -i '/web/a {{ var_web.instances[0].private_ip_address }}' hosts"
 
 
-  - name: Modify permissions for key
-    become: yes
-    become_method: sudo
-    file:
-      path: /usr/local/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-      owner: root
-      group: root
-      mode: 400
+
 
 
   - name: Pause for 0 minutes
