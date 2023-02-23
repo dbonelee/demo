@@ -69,12 +69,14 @@
 
 
   - name: Modify permissions for key
-    ansible.builtin.file:
-      path: "./ansible.pem"
-      state: directory
+    become: yes
+    become_method: sudo
+    file:
+      path: /usr/local/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
       owner: root
       group: root
-      mode: '0400'
+      mode: 400
+
 
   - name: Pause for 0 minutes
     ansible.builtin.pause:
