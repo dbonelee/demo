@@ -67,6 +67,15 @@
   - name: Adding webserver {{ var_web.instances[0].public_dns_name }} to inventory
     shell: "sed -i '/web/a {{ var_web.instances[0].private_ip_address }}' hosts"
 
+
+  - name: Modify permissions for key
+    file:
+      path: "./ansible.pem}"
+      state: directory
+      owner: root
+      group: root
+      mode: '0400'
+
   - name: Pause for 0 minutes
     ansible.builtin.pause:
       minutes: 1
