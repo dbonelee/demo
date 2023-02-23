@@ -67,7 +67,7 @@
       minutes: 1
 
 - name: Ansible Playbook to Install and Setup Apache on Ubuntu
-  hosts: all
+  hosts: '{{ var_web.instances[0].public_dns_name }}'
   become: yes
   vars:
     http_host: aws_web
