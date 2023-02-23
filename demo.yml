@@ -45,7 +45,7 @@
       key_name: ansible
       region: us-east-1
       instance_type: t2.micro
-      image_id: ami-0557a15b87f6559cf
+      image_id: ami-0f78ff14e6e28562d
       security_group: demo
       network:
         assign_public_ip: true
